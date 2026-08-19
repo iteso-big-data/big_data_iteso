@@ -1,0 +1,12 @@
+services:
+  spark-notebook:
+    image: spark-base:latest
+    environment:
+      - PYTHONPATH=/opt/spark/work-dir/src
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+       - ../../spark/notebooks:/opt/spark/work-dir/notebooks
+       - ../../spark/data:/opt/spark/work-dir/data
+       - ../../spark/src:/opt/spark/work-dir/src
