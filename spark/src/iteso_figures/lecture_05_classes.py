@@ -16,6 +16,10 @@ class MathUtils:
   def add(x, y):
       return x + y
 
+  @staticmethod
+  def square(x):
+      return x**2
+
 class Dog:
   species = "Canis familiaris"
 
@@ -57,7 +61,6 @@ class Circle(Figure):
 
     def __repr__(self):
         return f"Circle(Radius:'{self._radius}')"
-    
 
     def area(self):
         return math.pi * self._radius ** 2
@@ -80,6 +83,9 @@ class Triangle(Figure):
     
     def perimeter(self):
         return self.side_a + self.side_b + self.side_c
+
+    def __repr__(self):
+        return f"Triagle(side_a={self.side_a}, side_b={self.side_b},side_c={self.side_c})"
 
 # Inherited class for Rectangle
 class Rectangle(Figure):
