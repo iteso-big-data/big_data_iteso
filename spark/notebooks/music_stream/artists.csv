@@ -1,0 +1,11 @@
+artist_id,artist_info
+1,"{""artist_name"": ""Luna Vega"", ""country"": ""Mexico"", ""genres"": [""Pop"", ""Latin""], ""formed_year"": 2015}"
+2,"{""artist_name"": ""Neon Bridge"", ""country"": ""USA"", ""genres"": [""Rock"", ""Alternative""], ""formed_year"": 2010}"
+3,"{""artist_name"": ""Kaida"", ""country"": ""Japan"", ""genres"": [""J-Pop"", ""Electronic""], ""formed_year"": 2018}"
+4,"{""artist_name"": ""Solar Drift"", ""country"": ""Germany"", ""genres"": [""Electronic"", ""House""], ""formed_year"": 2012}"
+5,"{""artist_name"": ""Marisol Cantu"", ""country"": ""Mexico"", ""genres"": [""Folk"", ""Latin""], ""formed_year"": 2008}"
+6,"{""artist_name"": ""The Quiet Static"", ""country"": ""UK"", ""genres"": [""Indie"", ""Rock""], ""formed_year"": 2016}"
+7,"{""artist_name"": ""Isabel Moreno"", ""country"": ""Spain"", ""genres"": [""Flamenco"", ""Pop""], ""formed_year"": 2013}"
+8,"{""artist_name"": ""Static Pulse"", ""country"": ""Canada"", ""genres"": [""Electronic"", ""Techno""], ""formed_year"": 2017}"
+9,"{""artist_name"": ""Miho Tanaka"", ""country"": ""Japan"", ""genres"": [""J-Pop"", ""Ballad""], ""formed_year"": 2011}"
+10,"{""artist_name"": ""The Wandering Keys"", ""country"": ""USA"", ""genres"": [""Jazz"", ""Blues""], ""formed_year"": 2009}"
