@@ -1,0 +1,55 @@
+# infra/flink/docker-compose.yml
+# Flink session cluster (JobManager + TaskManager) that joins the same network
+# as infra/spark-cluster and infra/kafka, so `kafka:9093` resolves.
+#
+# Start order:
+#   1. infra/spark-cluster  -> docker compose up -d   (creates the network)
+#   2. infra/kafka          -> docker compose up -d
+#   3. infra/flink          -> docker compose up -d
+
+x-pyflink: &pyflink
+  image: pyflink:2.0.1           # built locally by docker build -f base/Dockerfile -t pyflink:2.0.1 .
+  pull_policy: never             # never try Docker Hub
+  networks:
+    - spark_cluster_default
+  volumes:
+    # Same host folders and container paths as the spark-notebook container,
+    # so Spark can read what Flink writes.
+    - ../../spark/src:/opt/flink/work-dir/src
+    - ../../spark/data:/opt/flink/work-dir/data
+    # Checkpoints must be visible to both JobManager and TaskManager
+    - flink-checkpoints:/opt/flink/work-dir/checkpoints
+
+services:
+  flink-jobmanager:
+    <<: *pyflink
+    container_name: flink-jobmanager
+    command: jobmanager
+    ports:
+      - "8081:8081"              # Flink Web UI -> http://localhost:8081
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        jobmanager.memory.process.size: 1600m
+
+  flink-taskmanager:
+    <<: *pyflink
+    container_name: flink-taskmanager
+    command: taskmanager
+    depends_on:
+      - flink-jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: 2
+        taskmanager.memory.process.size: 1728m
+
+volumes:
+  flink-checkpoints:
+
+networks:
+  spark_cluster_default:
+    name: spark-cluster_default
+    external: true
